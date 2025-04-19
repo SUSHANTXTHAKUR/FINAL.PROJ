@@ -1,0 +1,35 @@
+<script>
+    document.querySelector('form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+  
+      const username = document.getElementById('username').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+  
+      const response = await fetch('http://localhost:3000/api/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, email, password })
+      });
+  
+      const result = await response.json();
+  
+      if (response.ok) {
+        alert('✅ Signup successful!');
+  
+        // ✅ Store user data in localStorage
+        localStorage.setItem('user', JSON.stringify({
+          username: username,
+          email: email
+        }));
+  
+        // ✅ Redirect to profile page
+        window.location.href = 'profile.html';
+      } else {
+        alert(`❌ Signup failed: ${result.message}`);
+      }
+    });
+  </script>
+  
