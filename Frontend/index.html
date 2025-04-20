@@ -23,60 +23,109 @@
 
 	<link rel="stylesheet" href="css/flaticon.css">
 	<link rel="stylesheet" href="css/style.css">
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+	<style>
+		body { font-family: Arial; text-align: center; margin: 0; padding: 0; background: #fef1ec; }
+    .reviews-container { padding: 40px 20px; }
+    .review-box { background: white; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: inline-block; margin: 10px; padding: 20px; width: 280px; vertical-align: top; }
+    .client-img { border-radius: 50%; width: 50px; }
+    .client-name { font-weight: bold; margin-top: 10px; }
+    .add_Freview-btn {
+      margin-top: 30px;
+      background: #3cb371;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .add_review-btn:hover { background: #2e8b57; }
+	</style>
 </head>
 
 <body>
 
-	<div class="wrap">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 d-flex align-items-center">
-					<p class="mb-0 phone pl-md-2">
-						<a href="#" class="mr-2"><span class="fa fa-phone mr-1"></span> +00 1234 567</a>
-						<a href="#"><span class="fa fa-paper-plane mr-1"></span> youremail@email.com</a>
-					</p>
-				</div>
-				<div class="col-md-6 d-flex justify-content-md-end">
-					<div class="social-media">
-						<p class="mb-0 d-flex">
-							<a href="#" class="d-flex align-items-center justify-content-center"><span
-									class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
-							<a href="#" class="d-flex align-items-center justify-content-center"><span
-									class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
-							<a href="#" class="d-flex align-items-center justify-content-center"><span
-									class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
-							<a href="#" class="d-flex align-items-center justify-content-center"><span
-									class="fa fa-dribbble"><i class="sr-only">Dribbble</i></span></a>
-						</p>
+	<!-- Include Bootstrap Icons -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+
+	<!-- Active nav style -->
+	<style>
+		.navbar-nav .nav-link.active {
+			color: #00c27e !important;
+			font-weight: bold;
+			border-bottom: 2px solid #00c27e;
+		}
+	</style>
+
+	<!-- Include Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+
+<!-- Active nav style -->
+<style>
+	.navbar-nav .nav-link.active {
+		color: #00c27e !important;
+		font-weight: bold;
+		border-bottom: 2px solid #00c27e;
+	}
+
+	#logout-link:hover #profile-dropdown {
+		display: block !important;
+		background-color: #fff;
+		z-index: 9999;
+	}
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	<div class="container px-0">
+		<a class="navbar-brand" href="index.html"><span class="flaticon-pawprint-1 mr-2"></span>MICRRY</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+			aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="fa fa-bars"></span> Menu
+		</button>
+
+		<div class="collapse navbar-collapse" id="ftco-nav">
+			<ul class="navbar-nav align-items-center">
+				<li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+				<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+				<li class="nav-item"><a href="vet.html" class="nav-link">Veterinarian</a></li>
+				<li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+				<li class="nav-item"><a href="gallery.html" class="nav-link">Adopt</a></li>
+				<li class="nav-item"><a href="product.html" class="nav-link" id="product-link">Product</a></li>
+				<li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+				<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+			</ul>
+
+			<ul class="navbar-nav ml-auto align-items-center">
+				<!-- Sign in/up link -->
+				<li class="nav-item" id="auth-link">
+					<a href="login.html" class="nav-link">Sign in/up</a>
+				</li>
+
+				<!-- Avatar with hidden dropdown -->
+				<li class="nav-item d-none position-relative" id="logout-link">
+					<img id="user-avatar" src="" alt="User" class="rounded-circle"
+						style="height: 35px; width: 35px; object-fit: cover; cursor: pointer;">
+
+					<!-- Custom dropdown -->
+					<div id="profile-dropdown" class="dropdown-menu dropdown-menu-right mt-2 shadow"
+						style="display: none; position: absolute; top: 100%; right: 0;">
+						<div class="dropdown-item-text">
+							<strong id="user-name">Your Name</strong><br>
+							<small id="user-email">youremail@gmail.com</small>
+						</div>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Settings</a>
+						<a class="dropdown-item text-danger" href="#" onclick="logoutUser()">
+							<i class="bi bi-box-arrow-right"></i> Logout
+						</a>
 					</div>
-				</div>
-			</div>
+				</li>
+			</ul>
 		</div>
 	</div>
-	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-		<div class="container px-0">
-			<a class="navbar-brand" href="index.html"><span class="flaticon-pawprint-1 mr-2"></span>MICRRY</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-				aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="fa fa-bars"></span> Menu
-			</button>
-			<div class="collapse navbar-collapse" id="ftco-nav">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-					<li class="nav-item"><a href="vet.html" class="nav-link">Veterinarian</a></li>
-					<li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-					<li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
-					<li class="nav-item"><a href="pricing.html" class="nav-link">Pricing</a></li>
-					<li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-					<li class="nav-item"><a href="login.html" class="nav-link">Login</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-
-
+</nav>
 
 	<!-- END nav -->
 	<div class="hero-wrap js-fullheight" style="background-image: url('images/bg_1.jpg');"
@@ -270,14 +319,14 @@
 								<h2 class="mb-0">
 									<button href="#collapseOne"
 										class="d-flex py-3 px-4 align-items-center justify-content-between btn btn-link"
-										data-parent="#accordion" data-toggle="collapse" aria-expanded="true"
+										data-parent="#accordion" data-toggle="collapse" aria-expanded="false"
 										aria-controls="collapseOne">
 										<p class="mb-0">How to train your pet dog?</p>
 										<i class="fa" aria-hidden="true"></i>
 									</button>
 								</h2>
 							</div>
-							<div class="collapse show" id="collapseOne" role="tabpanel" aria-labelledby="headingOne">
+							<div class="collapse " id="collapseOne" role="tabpanel" aria-labelledby="headingOne">
 								<div class="card-body py-3 px-0">
 									<ol>
 										<li>Far far away, behind the word mountains</li>
@@ -463,11 +512,15 @@
 							</div>
 						</div>
 					</div>
+					<div class="row justify-content-center mt-4">
+						<div class="col-md-4 text-center">
+							<button class="btn btn-primary" onclick="window.location.href='add_review.html';">Leave a Review</button>
 				</div>
 			</div>
 		</div>
+		
 	</section>
-
+	
 	<section class="ftco-section bg-light">
 		<div class="container">
 			<div class="row justify-content-center pb-5 mb-3">
@@ -697,127 +750,75 @@
 		</div>
 	</section>
 
-	<section class="ftco-appointment ftco-section ftco-no-pt ftco-no-pb img" style="background-image: url(images/bg_3.jpg);">
+	<section class="ftco-appointment ftco-section ftco-no-pt ftco-no-pb img"
+		style="background-image: url(images/bg_3.jpg);">
 		<div class="overlay"></div>
 		<div class="container">
-		  <div class="row d-md-flex justify-content-end">
-			<div class="col-md-12 col-lg-6 half p-3 py-5 pl-lg-5 ftco-animate">
-			  <h2 class="mb-4">Free Consultation</h2>
-			  <form id="consultationForm" class="appointment">
-				<div class="row">
-				  <div class="col-md-12">
-					<div class="form-group">
-					  <div class="form-field">
-						<div class="select-wrap">
-						  <div class="icon"><span class="fa fa-chevron-down"></span></div>
-						  <select name="service" class="form-control" required>
-							<option value="">Select services</option>
-							<option value="Cat Sitting">Cat Sitting</option>
-							<option value="Dog Walk">Dog Walk</option>
-							<option value="Pet Spa">Pet Spa</option>
-							<option value="Pet Grooming">Pet Grooming</option>
-							<option value="Pet Daycare">Pet Daycare</option>
-						  </select>
+			<div class="row d-md-flex justify-content-end">
+				<div class="col-md-12 col-lg-6 half p-3 py-5 pl-lg-5 ftco-animate">
+					<h2 class="mb-4">Free Consultation</h2>
+					<form action="#" class="appointment">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<div class="form-field">
+										<div class="select-wrap">
+											<div class="icon"><span class="fa fa-chevron-down"></span></div>
+											<select name="" id="" class="form-control">
+												<option value="">Select services</option>
+												<option value="">Cat Sitting</option>
+												<option value="">Dog Walk</option>
+												<option value="">Pet Spa</option>
+												<option value="">Pet Grooming</option>
+												<option value="">Pet Daycare</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Your Name">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Vehicle number">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<div class="input-wrap">
+										<div class="icon"><span class="fa fa-calendar"></span></div>
+										<input type="text" class="form-control appointment_date" placeholder="Date">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<div class="input-wrap">
+										<div class="icon"><span class="fa fa-clock-o"></span></div>
+										<input type="text" class="form-control appointment_time" placeholder="Time">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<textarea name="" id="" cols="30" rows="7" class="form-control"
+										placeholder="Message"></textarea>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="submit" value="Send message" class="btn btn-primary py-3 px-4">
+								</div>
+							</div>
 						</div>
-					  </div>
-					</div>
-				  </div>
-				  <div class="col-md-6">
-					<div class="form-group">
-					  <input type="text" class="form-control" name="name" placeholder="Your Name" required>
-					</div>
-				  </div>
-				  <div class="col-md-6">
-					<div class="form-group">
-					  <input type="text" class="form-control" name="address" placeholder="Address" required>
-					</div>
-				  </div>
-				  <div class="col-md-6">
-					<div class="form-group">
-					  <div class="input-wrap">
-						<div class="icon"><span class="fa fa-calendar"></span></div>
-						<input type="text" class="form-control appointment_date" name="date" placeholder="Date" required>
-					  </div>
-					</div>
-				  </div>
-				  <div class="col-md-6">
-					<div class="form-group">
-					  <div class="input-wrap">
-						<div class="icon"><span class="fa fa-clock-o"></span></div>
-						<input type="text" class="form-control appointment_time" name="time" placeholder="Time" required>
-					  </div>
-					</div>
-				  </div>
-				  <div class="col-md-12">
-					<div class="form-group">
-					  <textarea name="message" class="form-control" placeholder="Message" rows="4" required></textarea>
-					</div>
-				  </div>
-				  <div class="col-md-12">
-					<div class="form-group">
-					  <input type="submit" value="Send message" class="btn btn-primary py-3 px-4">
-					</div>
-				  </div>
+					</form>
 				</div>
-			  </form>
 			</div>
-		  </div>
 		</div>
-	  </section>
-	  
-	  <!-- ✅ JS Script to send form data to your backend -->
-	  <script>
-		document.getElementById('consultationForm').addEventListener('submit', async function (e) {
-		  e.preventDefault();
-	  
-		  const formData = new FormData(this);
-		  const data = Object.fromEntries(formData.entries());
-	  
-		  // Format the date in the correct format (YYYY-MM-DD)
-		  const date = new Date(data.date);
-		  const formattedDate = date.toISOString().split('T')[0];  // This will give the date in 'YYYY-MM-DD' format
-		  data.date = formattedDate;
-	  
-		  // Convert time to 24-hour format
-		  const timeString = data.time;
-		  const time24 = convertTo24HourFormat(timeString); // Convert to 24-hour format
-		  data.time = time24;
-	  
-		  try {
-			const response = await fetch('http://localhost:3000/consultation', {
-			  method: 'POST',
-			  headers: { 'Content-Type': 'application/json' },
-			  body: JSON.stringify(data)
-			});
-	  
-			const result = await response.json();
-			if (response.ok) {
-			  alert('✅ Consultation request submitted successfully!');
-			  this.reset();
-			} else {
-			  alert(`❌ Failed: ${result.message}`);
-			}
-		  } catch (error) {
-			alert('❌ Error submitting the form. Please try again later.');
-			console.error(error);
-		  }
-		});
-	  
-		// Helper function to convert time to 24-hour format
-		function convertTo24HourFormat(time) {
-		  const [hourMin, period] = time.split(/(am|pm)/);
-		  let [hour, minute] = hourMin.split(':').map(num => parseInt(num, 10));
-	  
-		  if (period === 'am' && hour === 12) {
-			hour = 0; // midnight case
-		  } else if (period === 'pm' && hour !== 12) {
-			hour += 12; // convert PM hour to 24-hour format
-		  }
-	  
-		  return `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}:00`; // Return in HH:MM:SS format
-		}
-	  </script>
-	  
+	</section>
 
 	<footer class="footer">
 		<div class="container">
@@ -890,9 +891,7 @@
 					<p class="copyright">
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 						Copyright &copy;
-						<script>document.write(new Date().getFullYear());</script> All rights reserved | This template
-						is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
-							target="_blank">Colorlib.com</a>
+						<script>document.write(new Date().getFullYear());</script> All rights reserved |
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 					</p>
 				</div>
@@ -1050,13 +1049,115 @@
 			if (!message) return;
 
 			const chat = document.getElementById('chat-messages');
-			chat.innerHTML += `<div class="message user">${message}</div>`;
-			chat.innerHTML += `<div class="message bot">Thanks for reaching out! We'll get back to you soon.</div>`;
+			chat.innerHTML += <div class="message user">${message}</div>;
+			chat.innerHTML += <div class="message bot">Thanks for reaching out! We'll get back to you soon.</div>;
 			input.value = '';
 			chat.scrollTop = chat.scrollHeight;
 		}
 	</script>
 
+	<script>
+		const isLoggedIn = localStorage.getItem('loggedIn') === 'true';
+		const authLink = document.getElementById('auth-link');
+		const logoutLink = document.getElementById('logout-link');
+
+		
+
+		if (isLoggedIn) {
+			showUserProfileIcon(userProfilePic, userName, userEmail);
+		} else {
+			if (authLink) authLink.style.display = 'block';
+			if (logoutLink) logoutLink.classList.add('d-none');
+		}
+
+		function showUserProfileIcon(imageUrl, name, email) {
+			const avatar = document.getElementById("user-avatar");
+			const nameElem = document.getElementById("user-name");
+			const emailElem = document.getElementById("user-email");
+
+			if (avatar) avatar.src = imageUrl;
+			if (nameElem) nameElem.textContent = name;
+			if (emailElem) emailElem.textContent = email;
+
+			if (logoutLink) logoutLink.classList.remove("d-none");
+			if (authLink) authLink.style.display = "none";
+		}
+
+		function logoutUser() {
+			localStorage.removeItem('loggedIn');
+			window.location.reload();
+		}
+
+		// Avatar dropdown toggle
+		const avatar = document.getElementById("user-avatar");
+		const dropdown = document.getElementById("profile-dropdown");
+
+		if (avatar && dropdown) {
+			avatar.addEventListener("click", () => {
+				dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+			});
+
+			window.addEventListener("click", function (e) {
+				if (!avatar.contains(e.target) && !dropdown.contains(e.target)) {
+					dropdown.style.display = "none";
+				}
+			});
+		}
+	</script>
+
+	<!-- ✅ Add this script just before closing </body> tag -->
+	<script>
+		const currentPage = window.location.pathname.split("/").pop() || "index.html";
+		const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+
+		navLinks.forEach(link => {
+			if (link.getAttribute("href") === currentPage) {
+				link.classList.add("active");
+			}
+
+			link.addEventListener("click", () => {
+				navLinks.forEach(l => l.classList.remove("active"));
+				link.classList.add("active");
+			});
+		});
+	</script>
+
+<!-- JS logic for avatar/login state -->
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+		const userData = JSON.parse(localStorage.getItem("user")) || {};
+		const avatar = document.getElementById("user-avatar");
+		const logoutLink = document.getElementById("logout-link");
+		const authLink = document.getElementById("auth-link");
+		const userName = document.getElementById("user-name");
+		const userEmail = document.getElementById("user-email");
+
+		if (isLoggedIn) {
+			// Show avatar
+			authLink.classList.add("d-none");
+			logoutLink.classList.remove("d-none");
+
+			// Set user info
+			avatar.src = userData.photo || "https://www.svgrepo.com/show/384674/account-avatar-profile-user-11.svg";
+			userName.textContent = userData.name || "User";
+			userEmail.textContent = userData.email || "user@example.com";
+		}
+	});
+
+	function logoutUser() {
+  // Clear login state
+  localStorage.removeItem("loggedIn");
+  localStorage.removeItem("user");
+
+  // Optional: Clear sessionStorage if used
+  sessionStorage.clear();
+
+  // Redirect to login or homepage
+  window.location.href = "login.html"; // or "index.html" or any page you want
+}
+
+</script>
 
 
 

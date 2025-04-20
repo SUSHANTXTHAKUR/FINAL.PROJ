@@ -1,123 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MICRRY</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <style>
-    body {
-      background: linear-gradient(to right, #fbc2eb, #a6c1ee);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>MICRRY</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+	<style>
+		body {
+			background-image: url('images/login pic.png');
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
 
-    .card {
-      border: none;
-      border-radius: 20px;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-      padding: 30px;
-      width: 100%;
-      max-width: 450px;
-      background-color: #ffffffcc;
-      backdrop-filter: blur(5px);
-    }
+		.card {
+			border: none;
+			border-radius: 20px;
+			box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+			padding: 30px;
+			width: 100%;
+			max-width: 450px;
+			background-color: rgba(255, 255, 255, 0.8);
+		}
 
-    .form-control {
-      border-radius: 12px;
-    }
+		.form-control {
+			border-radius: 12px;
+		}
 
-    .btn-primary {
-      border-radius: 12px;
-    }
-  </style>
+		.btn-primary {
+			border-radius: 12px;
+		}
+
+		.google-btn {
+			border-radius: 50px;
+			border: 1px solid #ccc;
+			background-color: white;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 10px;
+			font-weight: 500;
+			text-decoration: none;
+			color: #444;
+		}
+
+		.google-btn img {
+			height: 20px;
+			margin-right: 10px;
+		}
+
+		.welcome-msg {
+			display: none;
+			text-align: center;
+		}
+	</style>
 </head>
-
 <body>
-  <div class="card">
-    <h2 class="text-center mb-4">Login</h2>
-    <!-- Added id="loginForm" to easily select the form -->
-    <form id="loginForm">
-      <div class="mb-3">
-        <label for="email" class="form-label">
-          <i class="bi bi-envelope-fill me-1"></i>Email address
-        </label>
-        <input type="email" class="form-control" id="email" placeholder="Enter email" required />
-      </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">
-          <i class="bi bi-lock-fill me-1"></i>Password
-        </label>
-        <input type="password" class="form-control" id="password" placeholder="Enter password" required />
-      </div>
-      <button type="submit" class="btn btn-primary w-100 mt-2">Login</button>
-    </form>
+	<!-- Login Card -->
+	<div class="card" id="loginCard">
+		<h2 class="text-center mb-4">Login</h2>
+		<form id="loginForm">
+			<div class="mb-3">
+				<label for="email" class="form-label">
+					<i class="bi bi-envelope-fill me-1"></i>Email address
+				</label>
+				<input type="email" class="form-control" id="email" placeholder="Enter email" required />
+			</div>
+			<div class="mb-3">
+				<label for="password" class="form-label">
+					<i class="bi bi-lock-fill me-1"></i>Password
+				</label>
+				<input type="password" class="form-control" id="password" placeholder="Enter password" required />
+			</div>
+			<button type="submit" class="btn btn-primary w-100 mt-2">Login</button>
+		</form>
 
-    <div class="text-center my-3">or</div>
+		<div class="text-center my-3">or</div>
 
-    <!-- 🟢 Google Sign-In Button -->
-    <div id="g_id_onload"
-      data-client_id="YOUR_GOOGLE_CLIENT_ID"
-      data-context="signin"
-      data-callback="handleCredentialResponse"
-      data-auto_prompt="false">
-    </div>
+		<!-- Google OAuth Button -->
+		<div class="text-center mb-3">
+			<a href="/auth/google" class="google-btn w-100" id="googleBtn">
+				<img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo" />
+				Sign in with Google
+			</a>
+		</div>
 
-    <div class="g_id_signin"
-      data-type="standard"
-      data-shape="pill"
-      data-theme="outline"
-      data-text="sign_in_with"
-      data-size="large"
-      data-logo_alignment="left">
-    </div>
+		<p class="text-center mt-3">
+			Don't have an account? <a href="signup.html">Sign Up here</a>
+		</p>
+	</div>
 
-    <p class="text-center mt-3">
-      Don't have an account? <a href="signup.html">Sign Up here</a>
-    </p>
-  </div>
+	<!-- Welcome Message -->
+	<div class="card welcome-msg" id="welcomeCard">
+		<h2 class="text-center">Welcome Back!</h2>
+		<p class="text-center">You are successfully logged in.</p>
+		<a href="index.html" class="btn btn-success mt-3">Go to Home</a>
+	</div>
 
-  <!-- Google JWT decode script -->
-  <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
-  <script>
-    function handleCredentialResponse(response) {
-      const data = jwt_decode(response.credential);
-      alert("Welcome " + data.name + " (" + data.email + ")");
-      console.log(data);
-    }
+	<script>
+		const loginForm = document.getElementById('loginForm');
+		const loginCard = document.getElementById('loginCard');
+		const welcomeCard = document.getElementById('welcomeCard');
 
-    // 🚀 LOGIN HANDLER
-    document.addEventListener('DOMContentLoaded', function () {
-      document.getElementById('loginForm').addEventListener('submit', async function (e) {
-        e.preventDefault();
+		// Function to show welcome card
+		function showWelcome() {
+			localStorage.setItem('loggedIn', 'true');
+			loginCard.style.display = 'none';
+			welcomeCard.style.display = 'block';
+		}
 
-        const email = document.getElementById('email').value.trim();
-        const password = document.getElementById('password').value.trim();
+		// Check if already logged in
+		if (localStorage.getItem('loggedIn') === 'true') {
+			showWelcome();
+		}
 
-        const response = await fetch('http://localhost:3000/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ email, password })
-        });
+		// Simulate normal login
+		loginForm.addEventListener('submit', function (e) {
+			e.preventDefault();
+			showWelcome();
+		});
 
-        const result = await response.json();
-
-        if (response.ok) {
-          alert('✅ Login successful!');
-          window.location.href = 'index.html';
-        } else {
-          alert(`❌ Login failed: ${result.message}`);
-        }
-      });
-    });
-  </script>
+		// Check for Google OAuth redirect success (?google=success)
+		const urlParams = new URLSearchParams(window.location.search);
+		if (urlParams.get('google') === 'success') {
+			showWelcome();
+		}
+	</script>
 </body>
-
 </html>

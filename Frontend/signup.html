@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -37,7 +36,6 @@
     }
   </style>
 </head>
-
 <body>
   <div class="card">
     <h2 class="text-center mb-4">Sign Up</h2>
@@ -65,9 +63,9 @@
 
     <div class="text-center my-3">or</div>
 
-    <!-- 🟢 Google Sign-In Button -->
+    <!-- ✅ Google Sign-In Button -->
     <div id="g_id_onload"
-      data-client_id="YOUR_GOOGLE_CLIENT_ID"
+      data-client_id="410310449719-kgbr2abfjft0v2c4bj013p1ln5js0k0a.apps.googleusercontent.com"
       data-context="signup"
       data-callback="handleCredentialResponse"
       data-auto_prompt="false">
@@ -90,6 +88,7 @@
   <!-- Google JWT decode script -->
   <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
   <script>
+    // 🟢 Normal signup
     document.getElementById('signupForm').addEventListener('submit', async function (e) {
       e.preventDefault();
 
@@ -99,23 +98,52 @@
 
       const response = await fetch('http://localhost:3000/api/signup', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, email, password })
       });
 
       const result = await response.json();
+      console.log('API response:', result); // Debugging log
 
       if (response.ok) {
         alert('✅ Signup successful!');
         localStorage.setItem('user', JSON.stringify({ username, email }));
-        window.location.href = 'profile.html';
+        window.location.href = 'http://127.0.0.1:5500/Frontend/index.html';
       } else {
         alert(`❌ Signup failed: ${result.message}`);
       }
     });
+
+    // 🟢 Google Signup Handler
+    function handleCredentialResponse(response) {
+      (async () => {
+        try {
+          const res = await fetch('http://localhost:3000/google-login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: response.credential }) // ✅ sending token to server
+      });
+
+      const result = await res.json();
+
+      if (res.ok) {
+        const { user } = result;
+        alert('✅ Google signup successful!');
+        localStorage.setItem('user', JSON.stringify({ username: user.name, email: user.email }));
+        window.location.href = 'http://127.0.0.1:5500/Frontend/index.html';
+      } else {
+        console.error('Google signup failed:', result.message);
+        alert(`❌ Google signup failed: ${result.message}`);
+      }
+    } catch (error) {
+      console.error('Error handling Google signup:', error);
+      alert('❌ An error occurred while processing Google signup.');
+    }
+  })();
+}
+
+    // Expose the function globally
+    window.handleCredentialResponse = handleCredentialResponse;
   </script>
 </body>
-
 </html>
